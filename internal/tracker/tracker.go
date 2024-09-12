@@ -6,3 +6,12 @@ type Tracker struct {
 	Created int64  `json:"created"`
 	Updated int64  `json:"updated"`
 }
+
+type CreateTrackerOptions struct {
+    Name string
+    Type string
+}
+
+func CreateTracker(options CreateTrackerOptions) {
+
+}

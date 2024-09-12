@@ -11,6 +11,10 @@ type Database[M any] struct {
 	table  string
 }
 
+var (
+    COLLECTION = "kuripot"
+)
+
 func NewDatabase[M any](table string) *Database[*M] {
 	// TODO: Create a functionality to setup and determine the home directory
 	// and application config
@@ -22,6 +26,11 @@ func NewDatabase[M any](table string) *Database[*M] {
 	return &Database[*M]{driver, table}
 }
 
-func (db *Database[M]) Create(data *M) (int, error) {
-	return 1, nil
+func (db *Database[M]) Create(data interface{}) (string, error) {
+    err := db.driver.Write(COLLECTION, db.table, data)
+    if err != nil {
+        return "", err
+    }
+
+    return "string", nil 
 }
